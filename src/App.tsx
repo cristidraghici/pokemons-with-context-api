@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
 import { useGlobalContext } from './contexts'
+import { useFetchPokemon } from './hooks'
 
 function App() {
-  const { state, dispatch } = useGlobalContext()
+  const { dispatch } = useGlobalContext()
+  useFetchPokemon()
 
-  console.log(state)
-
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch({
       type: 'setPokemonName',
-      payload: 'Pikachu',
+      payload: 'pikachu',
     })
   }, [dispatch])
 

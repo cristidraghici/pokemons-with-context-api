@@ -2,14 +2,20 @@ import { createContext } from 'react'
 import { GlobalContextType } from './GlobalProvider'
 
 export type GlobalStateType = {
-  currentPokemonName: string
+  pokemonName: string
+  pokemonAvatar: string
+
+  error: string
 }
 
 /**
  * The initial state
  */
 export const initialState: GlobalStateType = {
-  currentPokemonName: '',
+  pokemonName: '',
+  pokemonAvatar: '',
+
+  error: '',
 }
 
 /**
