@@ -14,6 +14,11 @@ const useFetchPokemon = () => {
       return
     }
 
+    dispatch({
+      type: 'setIsLoading',
+      payload: true,
+    })
+
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`)
       .then((res) => res.json())
       .then((res) => {
@@ -25,7 +30,13 @@ const useFetchPokemon = () => {
         }
       })
       .catch((e) => {
-        dispatch({ type: 'setError', payload: e.message })
+        dispatch({ type: 'setError', payload: e.message || e })
+      })
+      .finally(() => {
+        dispatch({
+          type: 'setIsLoading',
+          payload: false,
+        })
       })
 
     return () => {

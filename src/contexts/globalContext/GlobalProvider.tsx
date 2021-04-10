@@ -2,10 +2,15 @@ import { useReducer, Dispatch, ReactNode } from 'react'
 
 import GlobalContext, { initialState, GlobalStateType } from './GlobalContext'
 
-export type GlobalActionType = {
-  type: 'setPokemonName' | 'setPokemonAvatar' | 'setError'
-  payload: string
-}
+export type GlobalActionType =
+  | {
+      type: 'setPokemonName' | 'setPokemonAvatar' | 'setError'
+      payload: string
+    }
+  | {
+      type: 'setIsLoading'
+      payload: boolean
+    }
 
 export type GlobalContextType = {
   state: GlobalStateType
@@ -25,7 +30,7 @@ const globalContextReducer = (state: GlobalStateType, action: GlobalActionType):
       }
     }
     case 'setPokemonAvatar': {
-      console.log(`Updating the avatar for: ${state.pokemonName}`)
+      console.log(`Updating the avatar for ${state.pokemonName}: ${action.payload}`)
 
       return {
         ...state,
@@ -34,11 +39,19 @@ const globalContextReducer = (state: GlobalStateType, action: GlobalActionType):
       }
     }
     case 'setError': {
-      console.log(`Error: ${action.payload}`)
+      console.log(action.payload ? `Error: ${action.payload}` : 'Unset error.')
 
       return {
         ...state,
         error: action.payload,
+      }
+    }
+    case 'setIsLoading': {
+      console.log(`Set isLoading: ${action.payload}`)
+
+      return {
+        ...state,
+        isLoading: action.payload,
       }
     }
     default:

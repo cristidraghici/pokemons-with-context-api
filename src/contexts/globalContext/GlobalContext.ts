@@ -6,6 +6,7 @@ export type GlobalStateType = {
   pokemonAvatar: string
 
   error: string
+  isLoading: boolean
 }
 
 /**
@@ -16,6 +17,7 @@ export const initialState: GlobalStateType = {
   pokemonAvatar: '',
 
   error: '',
+  isLoading: false,
 }
 
 /**
