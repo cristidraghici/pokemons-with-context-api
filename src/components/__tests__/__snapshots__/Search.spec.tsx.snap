@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`./components/Search matches snapshot 1`] = `
+<div>
+  <input
+    class="Search"
+    type="text"
+    value="pikachu"
+  />
+</div>
+`;
