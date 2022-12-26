@@ -8,7 +8,8 @@ const useFetchPokemon = () => {
   } = useGlobalContext()
 
   useEffect(() => {
-    let isCurrent = true
+    const controller = new AbortController()
+    const signal = controller.signal
 
     if (pokemonName.length < 3) {
       return
@@ -19,10 +20,10 @@ const useFetchPokemon = () => {
       payload: true,
     })
 
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`, { signal })
       .then((res) => res.json())
       .then((res) => {
-        if (isCurrent && !!res.sprites && !!res.sprites.front_default) {
+        if (!!res.sprites && !!res.sprites.front_default) {
           dispatch({
             type: 'setPokemonAvatar',
             payload: res.sprites.front_default,
@@ -30,6 +31,12 @@ const useFetchPokemon = () => {
         }
       })
       .catch((e) => {
+        console.log({ e })
+        if (e.name === 'AbortError') {
+          console.log('New search performed')
+          return
+        }
+
         dispatch({ type: 'setError', payload: e.message || e })
       })
       .finally(() => {
@@ -40,7 +47,7 @@ const useFetchPokemon = () => {
       })
 
     return () => {
-      isCurrent = false
+      controller.abort()
     }
   }, [pokemonName, dispatch])
 }
