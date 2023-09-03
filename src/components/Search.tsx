@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { useGlobalContext } from '../contexts'
+import { useGlobalContext } from '../hooks'
 import debounce from '../utils/debounce'
 
 import { useFetchPokemon } from '../hooks'

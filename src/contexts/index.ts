@@ -1,1 +1,2 @@
-export { default as useGlobalContext } from './globalContext/hooks/useGlobalContext'
+export * from './GlobalContext'
+export * from './GlobalProvider'

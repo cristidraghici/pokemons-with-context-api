@@ -1,4 +1,4 @@
-import { useGlobalContext } from '../contexts'
+import { useGlobalContext } from '../hooks'
 
 const Avatar = (): JSX.Element => {
   const { state } = useGlobalContext()

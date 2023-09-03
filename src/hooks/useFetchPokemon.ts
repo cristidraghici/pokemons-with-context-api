@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useGlobalContext } from '../contexts'
+import useGlobalContext from './useGlobalContext'
 
 const useFetchPokemon = () => {
   const {
