@@ -2,6 +2,7 @@
   "name": "pokemons-with-context-api",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@picocss/pico": "^1.5.10",
     "@testing-library/jest-dom": "^6.1.2",
